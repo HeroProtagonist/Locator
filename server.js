@@ -15,6 +15,8 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
+app.use(express.static('vendor'));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/index.html'));
 });
