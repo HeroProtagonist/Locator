@@ -3,7 +3,7 @@ import React from 'react';
 const Sidebar = (props) => {
 
   return (
-    <div className="col s4">
+    <div>
       im the sidebar
       <div className="card-panel hoverable"> Hoverable Card Panel</div>
     </div>
