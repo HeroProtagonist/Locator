@@ -4,13 +4,14 @@
   "description": "Simple google places app",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "NODE_ENV=development node server.js"
   },
   "author": "Jordan Tepper",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "google-map-react": "^0.17.0",
     "materialize-css": "^0.97.7",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
