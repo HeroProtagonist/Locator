@@ -1,18 +1,16 @@
 import React from 'react';
+import SidebarItem from './Sidebar/SidebarItem.jsx';
 
-const Sidebar = (props) => {
+const Sidebar = ({ searches }) => (
+  <div>
+    <ul>
+      {searches.map((location, i) => <SidebarItem key={i} location={location} />)}
+    </ul>
+  </div>
+);
 
-  return (
-    <div>
-      im the sidebar
-      <div className="card-panel hoverable"> Hoverable Card Panel</div>
-    </div>
-  );
+Sidebar.propTypes = {
+  searches: React.PropTypes.array,
 };
-
-// Sidebar.propTypes = {
-//   children: React.PropTypes.object,
-//   isAuth: React.PropTypes.bool,
-// };
 
 export default Sidebar;

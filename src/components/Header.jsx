@@ -4,7 +4,7 @@ const Header = (props) => {
 
   return (
     <div id="header">
-      <h1> im the header </h1>
+      <h1> Header </h1>
     </div>
   );
 };

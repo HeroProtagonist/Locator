@@ -20,7 +20,7 @@ class MapView extends React.Component {
     return (
       <GoogleMap
         bootstrapURLKeys={{
-          key: 'AIzaSyBtvqbjCwpoz-DA7_kIEe06UTI3s16DtH8',
+          key: process.env.MAPS_KEY,
           language: 'en',
         }}
         defaultCenter={this.state.center}
