@@ -18,7 +18,16 @@ class App extends React.Component {
             <SearchBox />
             <Sidebar />
           </div>
-          <MapView />
+          <div className="col s8">
+            <div
+              style={{
+                width: '100%',
+                height: 400,
+              }}
+            >
+              <MapView />
+            </div>
+          </div>
         </div>
       </div>
     );
