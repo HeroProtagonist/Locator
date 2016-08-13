@@ -2,12 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 
 // Load environment variables
-const env = require('./env/clientDev');
+const env = require('./env/clientProd');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client',
     './src/index.jsx',
   ],
   output: {
@@ -16,11 +15,15 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(env.NODE_ENV),
+      },
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false,
       },
     }),
   ],
@@ -31,10 +34,9 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
+          presets: ['react', 'es2015', 'stage-0'],
         },
       },
     ],
   },
 };
-
