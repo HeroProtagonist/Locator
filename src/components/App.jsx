@@ -18,6 +18,15 @@ class App extends React.Component {
     });
   }
 
+  updateInfoWindow(clicked, index) {
+    console.log(clicked,index)
+    let newState = [...this.state.searches];
+    newState[index] = {...clicked, ...{showInfo: !newState[index].showInfo}};
+    this.setState({
+      searches: newState,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -25,18 +34,16 @@ class App extends React.Component {
         <div className="row">
           <div className="col s4">
             <SearchBox updateSearches={(search) => this.updateSearches(search)} />
-            <Sidebar searches={this.state.searches}
-          />
+            <Sidebar
+              searches={this.state.searches}
+              updateInfoWindow={(clicked, index) => this.updateInfoWindow(clicked, index)} 
+            />
           </div>
           <div className="col s8">
-            <div
-              style={{
-                width: '100%',
-                height: 500,
-              }}
-            >
-              <MapView />
-            </div>
+            <MapView
+              searches={this.state.searches} 
+              updateInfoWindow={(clicked, index) => this.updateInfoWindow(clicked, index)} 
+          />
           </div>
         </div>
       </div>

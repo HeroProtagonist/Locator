@@ -1,7 +1,10 @@
 import React from 'react';
 
-const SidebarItem = ({ location }) => (
-  <div className="card-panel hoverable">
+const SidebarItem = ({ location, updateInfoWindow, index }) => (
+  <div
+    className="card-panel hoverable"
+    onClick={() => updateInfoWindow(location, index) }
+  >
     <li> {location.name} </li>
   </div>
 );
