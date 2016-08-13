@@ -51,14 +51,13 @@ class SearchBox extends React.Component {
   // }
 
   render() {
-
     return (
       <div>
         <input id="search" placeholder="Search a location..." />
       </div>
     );
   }
-};
+}
 
 SearchBox.propTypes = {
   updateSearches: React.PropTypes.func,
