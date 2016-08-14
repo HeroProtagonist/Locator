@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SidebarItem = ({ location, updateInfoWindow, index }) => (
+const SidebarItem = ({ location, handleItemClick, index }) => (
   <div
     className="card-panel hoverable"
-    onClick={() => updateInfoWindow(location, index)}
+    onClick={() => handleItemClick(location, index)}
   >
     <li> {location.name} </li>
   </div>
@@ -11,7 +11,7 @@ const SidebarItem = ({ location, updateInfoWindow, index }) => (
 
 SidebarItem.propTypes = {
   location: React.PropTypes.object,
-  updateInfoWindow: React.PropTypes.func,
+  handleItemClick: React.PropTypes.func,
   index: React.PropTypes.number,
 };
 

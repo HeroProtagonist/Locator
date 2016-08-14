@@ -1,7 +1,7 @@
 import React from 'react';
 import SidebarItem from './Sidebar/SidebarItem.jsx';
 
-const Sidebar = ({ searches, updateInfoWindow }) => (
+const Sidebar = ({ searches, handleItemClick }) => (
   <div id="sidebar">
     <ul>
       {searches.map((location, i) =>
@@ -9,7 +9,7 @@ const Sidebar = ({ searches, updateInfoWindow }) => (
           key={i}
           location={location}
           index={i}
-          updateInfoWindow={(clicked, index) => updateInfoWindow(clicked, index)} 
+          handleItemClick={(clicked, index) => handleItemClick(clicked, index)}
         />)}
     </ul>
   </div>
@@ -17,7 +17,7 @@ const Sidebar = ({ searches, updateInfoWindow }) => (
 
 Sidebar.propTypes = {
   searches: React.PropTypes.array,
-  updateInfoWindow: React.PropTypes.func,
+  handleItemClick: React.PropTypes.func,
 };
 
 export default Sidebar;
