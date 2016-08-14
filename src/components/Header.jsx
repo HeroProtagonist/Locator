@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Header = () => (
-  <div id="header">
-    <h1> Header </h1>
-  </div>
+  <header>
+    <h1> Locater </h1>
+  </header>
 );
 
 export default Header;

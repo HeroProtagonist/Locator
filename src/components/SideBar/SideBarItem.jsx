@@ -2,7 +2,7 @@ import React from 'react';
 
 const SidebarItem = ({ location, handleItemClick, index }) => (
   <div
-    className="card-panel hoverable"
+    className="card-panel hoverable teal lighten-2"
     onClick={() => handleItemClick(location, index)}
   >
     <li> {location.name} </li>

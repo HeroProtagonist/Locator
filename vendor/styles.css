@@ -1,14 +1,48 @@
-#header {
+body {
+  font-family: 'Lobster';
+  background-color: #e6f3ff; 
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+header {
   width: 50%;
   margin: 0 auto;
   text-align: center;
   font-size: 50px;
+  color: #4db6ac;
+  /*text-decoration: underline;*/
+}
+
+#search {
+  color: #0d47a1; 
 }
 
 #sidebar {
   height: 450px;
   overflow-y: scroll;
 }
+
+#sidebar li {
+  color: #0d47a1; 
+}
+
+#error {
+  color: red;
+}
+
+/*#ww {
+  background-color: #4db6ac;
+}*/
+
+.info {
+  background-color: #4db6ac;
+  color: #0d47a1;
+}
+
+/*.list-item {
+  background-color: #e6e6ff;
+}*/
 
 /*#search {
   width: 75%;

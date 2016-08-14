@@ -4,9 +4,9 @@ class SearchBox extends React.Component {
 
   constructor(props) {
     super(props);
-    // const updateSearches = {this.props.updateSearches};
     this.state = {
       selection: {},
+      error: false,
     };
   }
 
@@ -16,8 +16,15 @@ class SearchBox extends React.Component {
     autocomplete.addListener('place_changed', () => {
       const selected = autocomplete.getPlace();
 
+      if (Object.keys(selected).length <= 1) {
+        this.setState({
+          error: true,
+        });
+        console.log('invalid');
+        return;
+      }
+
       const name = selected.name;
-      const website = selected.website;
       const address = selected.formatted_address;
       const phoneNumber = selected.formatted_phone_number;
       const lat = selected.geometry.location.lat();
@@ -25,7 +32,6 @@ class SearchBox extends React.Component {
 
       const place = {
         name,
-        website,
         address,
         phoneNumber,
         lat,
@@ -38,10 +44,17 @@ class SearchBox extends React.Component {
     });
   }
 
+  removeError() {
+    this.setState({
+      error: false,
+    });
+  }
+
   render() {
     return (
       <div>
-        <input id="search" placeholder="Search a location..." />
+        <input id="search" onChange={() => this.removeError()} placeholder="Search a location..." />
+        { this.state.error ? (<div id="error"> Invalid Search </div>) : null }
       </div>
     );
   }

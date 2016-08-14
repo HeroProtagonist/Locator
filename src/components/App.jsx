@@ -48,15 +48,15 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <div className="row">
-          <div className="col s4">
+        <main className="row">
+          <section className="col s4">
             <SearchBox updateSearches={(search) => this.updateSearches(search)} />
             <Sidebar
               searches={this.state.searches}
               handleItemClick={(clicked, index) => this.handleItemClick(clicked, index)}
             />
-          </div>
-          <div className="col s8">
+          </section>
+          <section className="col s8">
             <MapView
               center={this.state.mapCenter}
               handleRecenter={(lat, lng) => this.handleRecenter(lat, lng)}
@@ -64,8 +64,8 @@ class App extends React.Component {
               searches={this.state.searches}
               updateInfoWindow={(clicked, index) => this.updateInfoWindow(clicked, index)}
             />
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     );
   }
