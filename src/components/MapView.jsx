@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { GoogleMapLoader, GoogleMap, InfoWindow, Marker } from 'react-google-maps';
+import MapMarker from './MapMarker.jsx';
 
 
 class MapView extends React.Component {
@@ -20,11 +20,12 @@ class MapView extends React.Component {
   }
 
 
-  handleRecenter(marker) {
+  handleRecenter(lat, lng) {
+    console.log(lat,lng)
     this.setState({
       center: {
-        lat: marker.lat,
-        lng: marker.lng,
+        lat,
+        lng,
       },
     });
   }
@@ -32,12 +33,20 @@ class MapView extends React.Component {
   renderInfoWindow(location, index) {
   // console.log(location,index)
   // on close reset state
-
+console.log(location);
     return (
       <InfoWindow
         onCloseclick={this.props.updateInfoWindow.bind(this, location, index)}
       >
-        <div> {location.name} </div>
+        <div className="info">
+          <strong> {location.name} </strong>
+          <div>
+            {location.address}
+          </div>
+          <div>
+            {location.phoneNumber}
+          </div>
+        </div>
       </InfoWindow>
     );
   }
@@ -57,11 +66,24 @@ class MapView extends React.Component {
           <GoogleMap
             // ref={(map) => console.log(map)}
             defaultZoom={12}
-            defaultCenter={{ lat: 37.7835890, lng: -122.4092149 }}
-            // center={this.state.center}
+            // defaultCenter={{ lat: 37.7835890, lng: -122.4092149 }}
+            center={this.state.center}
             // onClick={props.onMapClick}
           >
-            {this.props.searches.map((location, i) => (
+
+          {this.props.searches.map((location, i) => (
+            <MapMarker 
+              mapHolderRef={this} 
+              loc={location} 
+              i={i} 
+              key={i} 
+              onClick = {() => this.handlePinClick(location, i)}
+              reCenter={(lat, lng) => this.handleRecenter(lat, lng)} 
+            >
+              {location.showInfo ? this.renderInfoWindow(location, i) : null}
+            </MapMarker>
+        ))}
+{/*}            {this.props.searches.map((location, i) => (
               <Marker
                 key={i}
                 position={{
@@ -74,7 +96,7 @@ class MapView extends React.Component {
                 {location.showInfo ? this.renderInfoWindow(location, i) : null}
               </Marker>
               )
-            )}
+            )} */}
           </GoogleMap>
         }
       />
