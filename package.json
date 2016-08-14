@@ -1,5 +1,5 @@
 {
-  "name": "googleplaces",
+  "name": "locator",
   "version": "1.0.0",
   "description": "Simple google places app",
   "main": "index.js",

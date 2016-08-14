@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => (
   <header>
-    <h1> Locater </h1>
+    <h1> Locator !</h1>
   </header>
 );
 

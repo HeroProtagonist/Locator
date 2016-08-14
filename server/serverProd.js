@@ -21,8 +21,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('src/index.html'));
 });
 
-// Number(process.env.PORT)
-
 app.listen(process.env.PORT, err => {
   if (err) {
     console.log(err);
