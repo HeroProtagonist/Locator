@@ -11,7 +11,6 @@ header {
   text-align: center;
   font-size: 50px;
   color: #4db6ac;
-  /*text-decoration: underline;*/
 }
 
 #search {
@@ -31,14 +30,15 @@ header {
   color: red;
 }
 
+.info {
+  font-family: 'Lobster';
+  color: #0d47a1;
+}
+
 /*#ww {
   background-color: #4db6ac;
 }*/
 
-.info {
-  background-color: #4db6ac;
-  color: #0d47a1;
-}
 
 /*.list-item {
   background-color: #e6e6ff;
