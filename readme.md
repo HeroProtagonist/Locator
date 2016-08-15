@@ -1,6 +1,6 @@
 # Locator
 
-> [Try it out](http://----/)
+> [Try it out](http://45.55.52.149/)
 > Lightweight app used to mark locations for future exploration.
 
 ## Table of Contents
@@ -23,10 +23,11 @@ Webpack is used for transpilation, minification, module bundling, and hot reload
 
 [MaterializeCSS](http://materializecss.com/) takes care of the grid system ensuring that the application is responsive. ESLint is configured with the Airbnb style guide, ensuring that all code conforms to a single standard.
 
+Locator is deployed as a Docker container on a Digital Ocean droplet [here](http://45.55.52.149/).
+
 
 ## Directory Layout
 
-Use the diagram below as an example and starting point 
 
 ```
 .
@@ -42,7 +43,7 @@ Use the diagram below as an example and starting point
 ├── .gitignore                # Ignored files from version control
 ├── Dockerfile                # Instructions to build docker image
 ├── package.json              # Dependency list and scripts to run application
-├── webpack.config.prod.js    # Webpack configurations for development 
+├── webpack.config.dev.js     # Webpack configurations for development 
 └── webpack.config.prod.js    # Webpack configurations for production
 ```
 
@@ -66,8 +67,9 @@ $ npm install
 ``` 
 
 #### Environmental Variables
+> Skip this step if running from .zip file
 
-For this application the env vars must be created:
+For this application the env variable files must be created:
 
 - Create a `clientDev.js` and `clientProd.js` file based on the `.client.sample` file: used to access environmental variables from within the client JSX components and JS files.
 
@@ -91,7 +93,7 @@ $ npm run prod
 
 #### Deploying with Docker
 
-To build a Docker image run from within the root directory:
+To build a Docker image, run from within the root directory:
 
 ```
 $ docker build -t {{imageName}} .
