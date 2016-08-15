@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoogleMapLoader, GoogleMap } from 'react-google-maps';
-import MapMarker from './MapMarker.jsx';
+import MapMarker from './MapView/MapMarker.jsx';
 
 const MapView = ({ searches, center, updateInfoWindow, handleItemClick, handleRecenter }) => (
   <GoogleMapLoader
