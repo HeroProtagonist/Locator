@@ -8,7 +8,6 @@ class MapMarker extends React.Component {
     this.props.reCenter(this.props.loc.lat, this.props.loc.lng);
   }
 
-
   renderInfoWindow(location, index) {
     return (
       <InfoWindow

@@ -5,7 +5,6 @@ class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: {},
       error: false,
     };
   }
@@ -20,7 +19,6 @@ class SearchBox extends React.Component {
         this.setState({
           error: true,
         });
-        console.log('invalid');
         return;
       }
 
@@ -42,6 +40,10 @@ class SearchBox extends React.Component {
       this.props.updateSearches(place);
       search.value = '';
     });
+  }
+
+  componentWillUnmount() {
+    google.maps.event.clearInstanceListeners(autocomplete);
   }
 
   removeError() {

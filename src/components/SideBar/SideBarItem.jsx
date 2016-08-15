@@ -2,7 +2,7 @@ import React from 'react';
 
 const SidebarItem = ({ location, handleItemClick, index }) => (
   <div
-    className="card-panel hoverable teal lighten-2"
+    className="card-panel hoverable teal lighten-2 side-item"
     onClick={() => handleItemClick(location, index)}
   >
     <li> {location.name} </li>
@@ -16,4 +16,3 @@ SidebarItem.propTypes = {
 };
 
 export default SidebarItem;
-
