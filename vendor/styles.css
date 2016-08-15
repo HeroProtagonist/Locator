@@ -35,16 +35,6 @@ header {
   color: #0d47a1;
 }
 
-/*#ww {
-  background-color: #4db6ac;
-}*/
-
-
-/*.list-item {
-  background-color: #e6e6ff;
-}*/
-
-/*#search {
-  width: 75%;
-  margin: 0 auto;
-}*/
+.side-item {
+  text-align: center;
+}
