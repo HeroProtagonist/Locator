@@ -32,18 +32,18 @@ Use the diagram below as an example and starting point
 .
 ├── /env/                     # Environment variables
 ├── /node_modules/            # 3rd-party libraries and utilities
+├── /server/                  # Express dev. and prod. servers 
 ├── /src/                     # Client source code
     ├── /components/          # React component files           
-    ├── index.html            # Index file containing mount point for React
+    ├── index.html            # HTML file containing mount point for React
     ├── index.jsx             # React entry point
 	├── /vendor/              # CSS files 
 ├── .eslintrc                 # ESLint settings
 ├── .gitignore                # Ignored files from version control
 ├── Dockerfile                # Instructions to build docker image
 ├── package.json              # Dependency list and scripts to run application
-├── server.js                 # Express server 
-├── webpack.config.prod.js    # Webpack Configurations for development 
-└── webpack.config.prod.js    # Webpack Configurations for production
+├── webpack.config.prod.js    # Webpack configurations for development 
+└── webpack.config.prod.js    # Webpack configurations for production
 ```
 
 ## Tech Stack
@@ -54,18 +54,24 @@ Use the diagram below as an example and starting point
 
 ## Development
 
+This application can be run in production or development mode. Development will enable hot reloading of React components, will not minify JS files, and run React in development mode. Production disables hot reloading, minifies JS files, optimizes bundling, and runs React in production mode.
+
 ### Installing Dependencies
 
 In order to run the application make sure to install all dependencies.
 From within the root directory:
 
 ```sh
-npm install
+$ npm install
 ``` 
 
 #### Environmental Variables
 
+For this application the env vars must be created:
 
+- Create a `clientDev.js` and `clientProd.js` file based on the `.client.sample` file: used to access environmental variables from within the client JSX components and JS files.
+
+- Create a `development.env` and `production.env` file based on the `.env.sample` file: used to access environmental variables from the client server.
 
 #### Running the App
 
@@ -74,13 +80,13 @@ From within the root directory:
 Development:
 
 ```sh
-npm start
+$ npm start
 ```
 
 Production:
 
 ```sh
-npm run prod
+$ npm run prod
 ```
 
 #### Deploying with Docker
@@ -88,17 +94,17 @@ npm run prod
 To build a Docker image run from within the root directory:
 
 ```
-docker build -t {{imageName}} .
+$ docker build -t {{imageName}} .
 ```
 
 To run a container from the image:
 
 ```
-docker run -p 3000:3000 -d —name {{containerName}} {{imageName}} 
+$ docker run -p 80:80 -d -—name {{containerName}} {{imageName}} 
 ```
 
 The -p flag maps the container port to the docker machine port. The -d flag will run the container in the background. The --name flag will give the container a custom name, if left off a random name will be generated. The container will be run in production mode.
 
 ## Future Work
 
-
+This application can be expanded to include user profiles and a backend so users can store their locations of interest. As the app grows, *React Router* can be used to handle front end routing and *Redux* for state management.
