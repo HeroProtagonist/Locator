@@ -1,11 +1,13 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Marker, InfoWindow } from 'react-google-maps';
+import { updateCenter } from '../../redux/actions/mapActions';
 
 class MapMarker extends React.Component {
 
   componentDidMount() {
-    this.props.reCenter(this.props.loc.lat, this.props.loc.lng);
+    this.props.updateCenter(this.props.loc.lat, this.props.loc.lng);
   }
 
   renderInfoWindow(location, index) {
@@ -42,6 +44,16 @@ class MapMarker extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  center: state.map,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateCenter: bindActionCreators(updateCenter, dispatch),
+  };
+}
+
 MapMarker.propTypes = {
   reCenter: React.PropTypes.func,
   mapHolderRef: React.PropTypes.object,
@@ -51,4 +63,4 @@ MapMarker.propTypes = {
   index: React.PropTypes.number,
 };
 
-export default MapMarker;
+export default connect(mapStateToProps, mapDispatchToProps)(MapMarker);
