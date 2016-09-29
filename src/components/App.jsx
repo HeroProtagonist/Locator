@@ -50,7 +50,7 @@ class App extends React.Component {
         <Header />
         <main className="row">
           <section className="col s4">
-            <SearchBox updateSearches={(search) => this.updateSearches(search)} />
+            <SearchBox />
             <Sidebar
               searches={this.state.searches}
               handleItemClick={(clicked, index) => this.handleItemClick(clicked, index)}

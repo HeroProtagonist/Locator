@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateSearches } from '../redux/actions/placeActions';
 
 class SearchBox extends React.Component {
 
@@ -62,8 +65,18 @@ class SearchBox extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  places: state.places,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateSearches: bindActionCreators(updateSearches, dispatch),
+  };
+}
+
 SearchBox.propTypes = {
   updateSearches: React.PropTypes.func,
 };
 
-export default SearchBox;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
