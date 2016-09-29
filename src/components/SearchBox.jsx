@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateSearches } from '../redux/actions/placeActions';
+import { updateError } from '../redux/actions/errorActions';
 
 class SearchBox extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      error: false,
-    };
+    // this.state = {
+    //   error: false,
+    // };
   }
 
   componentDidMount() {
@@ -19,9 +20,7 @@ class SearchBox extends React.Component {
       const selected = autocomplete.getPlace();
 
       if (Object.keys(selected).length <= 1) {
-        this.setState({
-          error: true,
-        });
+        this.props.updateError(true);
         return;
       }
 
@@ -58,8 +57,12 @@ class SearchBox extends React.Component {
   render() {
     return (
       <div>
-        <input id="search" onChange={() => this.removeError()} placeholder="Search a location..." />
-        { this.state.error ? (<div id="error"> Invalid Search </div>) : null }
+        <input
+          id="search"
+          onChange={() => this.props.updateError(false)}
+          placeholder="Search a location..."
+        />
+        { this.props.error ? (<div id="error"> Invalid Search </div>) : null }
       </div>
     );
   }
@@ -67,16 +70,20 @@ class SearchBox extends React.Component {
 
 const mapStateToProps = (state) => ({
   places: state.places,
+  error: state.error,
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     updateSearches: bindActionCreators(updateSearches, dispatch),
+    updateError: bindActionCreators(updateError, dispatch),
   };
 }
 
 SearchBox.propTypes = {
+  error: React.PropTypes.bool,
   updateSearches: React.PropTypes.func,
+  updateError: React.PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
