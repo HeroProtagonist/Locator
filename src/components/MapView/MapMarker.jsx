@@ -37,7 +37,10 @@ class MapMarker extends React.Component {
           lat: this.props.loc.lat,
           lng: this.props.loc.lng,
         }}
-        onClick={() => this.props.updateShowInfo(this.props.loc, this.props.index)}
+        onClick={() => {
+          this.props.updateShowInfo(this.props.loc, this.props.index);
+          this.props.updateCenter(this.props.loc.lat, this.props.loc.lng);
+        }}
       >
       {this.props.loc.showInfo ? this.renderInfoWindow(this.props.loc, this.props.index) : null}
       </Marker>
