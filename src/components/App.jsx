@@ -10,8 +10,8 @@ class App extends React.Component {
     this.state = {
       searches: [],
       mapCenter: {
-        lat: 37.7835890,
-        lng: -122.4092149,
+        lat: 40.7589,
+        lng: -73.9851,
       },
     };
   }
