@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Marker, InfoWindow } from 'react-google-maps';
 import { updateCenter } from '../../redux/actions/mapActions';
+import { updateShowInfo } from '../../redux/actions/placeActions';
 
 class MapMarker extends React.Component {
 
@@ -13,7 +14,7 @@ class MapMarker extends React.Component {
   renderInfoWindow(location, index) {
     return (
       <InfoWindow
-        onCloseclick={this.props.updateInfoWindow.bind(this, location, index)}
+        onCloseclick={ () => this.props.updateShowInfo(location, index) }
       >
         <div className="info">
           <strong> {location.name} </strong>
@@ -36,7 +37,7 @@ class MapMarker extends React.Component {
           lat: this.props.loc.lat,
           lng: this.props.loc.lng,
         }}
-        onClick={() => this.props.handlePinClick(this.props.loc, this.props.index)}
+        onClick={() => this.props.updateShowInfo(this.props.loc, this.props.index)}
       >
       {this.props.loc.showInfo ? this.renderInfoWindow(this.props.loc, this.props.index) : null}
       </Marker>
@@ -51,6 +52,7 @@ const mapStateToProps = (state) => ({
 function mapDispatchToProps(dispatch) {
   return {
     updateCenter: bindActionCreators(updateCenter, dispatch),
+    updateShowInfo: bindActionCreators(updateShowInfo, dispatch),
   };
 }
 
