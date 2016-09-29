@@ -1,13 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addPlace } from '../redux/actions/placeActions';
+import updateError from '../redux/actions/errorActions';
 
 class SearchBox extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: false,
-    };
-  }
 
   componentDidMount() {
     const search = document.getElementById('search');
@@ -16,9 +13,7 @@ class SearchBox extends React.Component {
       const selected = autocomplete.getPlace();
 
       if (Object.keys(selected).length <= 1) {
-        this.setState({
-          error: true,
-        });
+        this.props.updateError(true);
         return;
       }
 
@@ -37,7 +32,7 @@ class SearchBox extends React.Component {
         showInfo: false,
       };
 
-      this.props.updateSearches(place);
+      this.props.addPlace(place);
       search.value = '';
     });
   }
@@ -46,24 +41,35 @@ class SearchBox extends React.Component {
     google.maps.event.clearInstanceListeners(autocomplete);
   }
 
-  removeError() {
-    this.setState({
-      error: false,
-    });
-  }
-
   render() {
     return (
       <div>
-        <input id="search" onChange={() => this.removeError()} placeholder="Search a location..." />
-        { this.state.error ? (<div id="error"> Invalid Search </div>) : null }
+        <input
+          id="search"
+          onChange={() => this.props.updateError(false)}
+          placeholder="Search a location..."
+        />
+        { this.props.error ? (<div id="error"> Invalid Search </div>) : null }
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  error: state.error,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addPlace: bindActionCreators(addPlace, dispatch),
+    updateError: bindActionCreators(updateError, dispatch),
+  };
+}
+
 SearchBox.propTypes = {
-  updateSearches: React.PropTypes.func,
+  error: React.PropTypes.bool,
+  addPlace: React.PropTypes.func,
+  updateError: React.PropTypes.func,
 };
 
-export default SearchBox;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

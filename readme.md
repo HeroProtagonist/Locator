@@ -1,6 +1,6 @@
 # Locator
 
-> [Try it out](http://45.55.52.149/)
+> [Try it out](https://heroprotagonist.github.io/Locator/)
 > Lightweight app used to mark locations for future exploration.
 
 ## Table of Contents

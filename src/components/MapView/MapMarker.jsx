@@ -1,17 +1,20 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Marker, InfoWindow } from 'react-google-maps';
+import updateCenter from '../../redux/actions/mapActions';
+import { updateShowInfo } from '../../redux/actions/placeActions';
 
 class MapMarker extends React.Component {
 
   componentDidMount() {
-    this.props.reCenter(this.props.loc.lat, this.props.loc.lng);
+    this.props.updateCenter(this.props.loc.lat, this.props.loc.lng);
   }
 
   renderInfoWindow(location, index) {
     return (
       <InfoWindow
-        onCloseclick={this.props.updateInfoWindow.bind(this, location, index)}
+        onCloseclick={() => this.props.updateShowInfo(location, index)}
       >
         <div className="info">
           <strong> {location.name} </strong>
@@ -34,7 +37,10 @@ class MapMarker extends React.Component {
           lat: this.props.loc.lat,
           lng: this.props.loc.lng,
         }}
-        onClick={() => this.props.handlePinClick(this.props.loc, this.props.index)}
+        onClick={() => {
+          this.props.updateShowInfo(this.props.loc, this.props.index);
+          this.props.updateCenter(this.props.loc.lat, this.props.loc.lng);
+        }}
       >
       {this.props.loc.showInfo ? this.renderInfoWindow(this.props.loc, this.props.index) : null}
       </Marker>
@@ -42,13 +48,19 @@ class MapMarker extends React.Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    updateCenter: bindActionCreators(updateCenter, dispatch),
+    updateShowInfo: bindActionCreators(updateShowInfo, dispatch),
+  };
+}
+
 MapMarker.propTypes = {
-  reCenter: React.PropTypes.func,
-  mapHolderRef: React.PropTypes.object,
-  handlePinClick: React.PropTypes.func,
-  loc: React.PropTypes.object,
-  updateInfoWindow: React.PropTypes.func,
   index: React.PropTypes.number,
+  mapHolderRef: React.PropTypes.object,
+  loc: React.PropTypes.object,
+  updateCenter: React.PropTypes.func,
+  updateShowInfo: React.PropTypes.func,
 };
 
-export default MapMarker;
+export default connect(null, mapDispatchToProps)(MapMarker);

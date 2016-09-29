@@ -1,18 +1,44 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateShowInfo, removePlace } from '../../redux/actions/placeActions';
+import updateCenter from '../../redux/actions/mapActions';
 
-const SidebarItem = ({ location, handleItemClick, index }) => (
+const SidebarItem = (props) => (
   <div
     className="card-panel hoverable teal lighten-2 side-item"
-    onClick={() => handleItemClick(location, index)}
+    onClick={() => {
+      props.updateShowInfo(props.location, props.index);
+      props.updateCenter(props.location.lat, props.location.lng);
+    }}
   >
-    <li> {location.name} </li>
+    <li> {props.location.name}
+      <span
+        className="close"
+        onClick={(e) => {
+          props.removePlace(props.index);
+          e.stopPropagation();
+        }}
+      > X
+      </span>
+    </li>
   </div>
 );
 
+function mapDispatchToProps(dispatch) {
+  return {
+    updateShowInfo: bindActionCreators(updateShowInfo, dispatch),
+    updateCenter: bindActionCreators(updateCenter, dispatch),
+    removePlace: bindActionCreators(removePlace, dispatch),
+  };
+}
+
 SidebarItem.propTypes = {
   location: React.PropTypes.object,
-  handleItemClick: React.PropTypes.func,
+  updateShowInfo: React.PropTypes.func,
+  updateCenter: React.PropTypes.func,
+  removePlace: React.PropTypes.func,
   index: React.PropTypes.number,
 };
 
-export default SidebarItem;
+export default connect(null, mapDispatchToProps)(SidebarItem);

@@ -1,23 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SidebarItem from './Sidebar/SidebarItem.jsx';
 
-const Sidebar = ({ searches, handleItemClick }) => (
+const Sidebar = (props) => (
   <div id="sidebar">
     <ul>
-      {searches.map((location, i) =>
+      {props.places.map((location, i) =>
         <SidebarItem
           key={i}
           location={location}
           index={i}
-          handleItemClick={(clicked, index) => handleItemClick(clicked, index)}
         />)}
     </ul>
   </div>
 );
 
+const mapStateToProps = (state) => ({
+  places: state.places,
+});
+
 Sidebar.propTypes = {
-  searches: React.PropTypes.array,
-  handleItemClick: React.PropTypes.func,
+  places: React.PropTypes.array,
 };
 
-export default Sidebar;
+export default connect(mapStateToProps)(Sidebar);

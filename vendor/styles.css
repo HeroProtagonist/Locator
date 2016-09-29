@@ -38,3 +38,8 @@ header {
 .side-item {
   text-align: center;
 }
+
+.close {
+  float: right;
+  cursor: pointer;
+}
