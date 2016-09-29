@@ -60,7 +60,6 @@ MapMarker.propTypes = {
   mapHolderRef: React.PropTypes.object,
   loc: React.PropTypes.object,
   updateCenter: React.PropTypes.func,
-  updateInfoWindow: React.PropTypes.func,
   updateShowInfo: React.PropTypes.func,
 };
 

@@ -56,20 +56,17 @@ class SearchBox extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  places: state.places,
   error: state.error,
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateSearches: bindActionCreators(updateSearches, dispatch),
     updateError: bindActionCreators(updateError, dispatch),
   };
 }
 
 SearchBox.propTypes = {
   error: React.PropTypes.bool,
-  updateSearches: React.PropTypes.func,
   updateError: React.PropTypes.func,
 };
 

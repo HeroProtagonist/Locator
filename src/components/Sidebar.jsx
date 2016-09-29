@@ -21,7 +21,6 @@ const mapStateToProps = (state) => ({
 
 Sidebar.propTypes = {
   places: React.PropTypes.array,
-  handleItemClick: React.PropTypes.func,
 };
 
 export default connect(mapStateToProps)(Sidebar);
