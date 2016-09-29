@@ -1,4 +1,4 @@
-export const updateSearches = place => ({
+export const addPlace = place => ({
   type: 'ADD_PLACE',
   place,
 });

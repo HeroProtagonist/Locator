@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateSearches } from '../redux/actions/placeActions';
+import { addPlace } from '../redux/actions/placeActions';
 import updateError from '../redux/actions/errorActions';
 
 class SearchBox extends React.Component {
@@ -32,7 +32,7 @@ class SearchBox extends React.Component {
         showInfo: false,
       };
 
-      this.props.updateSearches(place);
+      this.props.addPlace(place);
       search.value = '';
     });
   }
@@ -61,12 +61,14 @@ const mapStateToProps = (state) => ({
 
 function mapDispatchToProps(dispatch) {
   return {
+    addPlace: bindActionCreators(addPlace, dispatch),
     updateError: bindActionCreators(updateError, dispatch),
   };
 }
 
 SearchBox.propTypes = {
   error: React.PropTypes.bool,
+  addPlace: React.PropTypes.func,
   updateError: React.PropTypes.func,
 };
 
