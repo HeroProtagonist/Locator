@@ -1,13 +1,26 @@
 import React from 'react';
-
-const SidebarItem = ({ location, handleItemClick, index }) => (
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateShowInfo } from '../../redux/actions/placeActions';
+// { location, handleItemClick, index }
+const SidebarItem = (props) => (
   <div
     className="card-panel hoverable teal lighten-2 side-item"
-    onClick={() => handleItemClick(location, index)}
+    onClick={() => props.updateShowInfo(props.location, props.index)}
   >
-    <li> {location.name} </li>
+    <li> {props.location.name} </li>
   </div>
 );
+
+const mapStateToProps = (state) => ({
+  center: state.map,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updateShowInfo: bindActionCreators(updateShowInfo, dispatch),
+  };
+}
 
 SidebarItem.propTypes = {
   location: React.PropTypes.object,
@@ -15,4 +28,4 @@ SidebarItem.propTypes = {
   index: React.PropTypes.number,
 };
 
-export default SidebarItem;
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarItem);
