@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Marker, InfoWindow } from 'react-google-maps';
-import { updateCenter } from '../../redux/actions/mapActions';
+import updateCenter from '../../redux/actions/mapActions';
 import { updateShowInfo } from '../../redux/actions/placeActions';
 
 class MapMarker extends React.Component {

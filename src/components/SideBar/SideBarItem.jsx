@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateShowInfo } from '../../redux/actions/placeActions';
-import { updateCenter } from '../../redux/actions/mapActions';
+import updateCenter from '../../redux/actions/mapActions';
 
 const SidebarItem = (props) => (
   <div

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateSearches } from '../redux/actions/placeActions';
-import { updateError } from '../redux/actions/errorActions';
+import updateError from '../redux/actions/errorActions';
 
 class SearchBox extends React.Component {
 

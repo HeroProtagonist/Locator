@@ -6,13 +6,15 @@ export default function placeReducer(state = initialState.places, action) {
       return [...state, action.place];
 
     case 'UPDATE_SHOW_INFO':
-      const newState = [...state];
-      newState[action.index] = {
-        ...action.clicked,
-        ...{ showInfo: !newState[action.index].showInfo },
-      };
-      console.log(newState)
-      return newState;
+      return state.map((place, index) => {
+        if (action.index === index) {
+          return {
+            ...place,
+            ...{ showInfo: !place.showInfo },
+          };
+        }
+        return place;
+      });
 
     default:
       return state;
