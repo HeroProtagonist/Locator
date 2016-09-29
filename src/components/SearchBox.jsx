@@ -6,13 +6,6 @@ import { updateError } from '../redux/actions/errorActions';
 
 class SearchBox extends React.Component {
 
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   error: false,
-    // };
-  }
-
   componentDidMount() {
     const search = document.getElementById('search');
     const autocomplete = new google.maps.places.Autocomplete(search);
@@ -46,12 +39,6 @@ class SearchBox extends React.Component {
 
   componentWillUnmount() {
     google.maps.event.clearInstanceListeners(autocomplete);
-  }
-
-  removeError() {
-    this.setState({
-      error: false,
-    });
   }
 
   render() {

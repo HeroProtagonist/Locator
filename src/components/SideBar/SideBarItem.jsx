@@ -4,23 +4,17 @@ import { bindActionCreators } from 'redux';
 import { updateShowInfo } from '../../redux/actions/placeActions';
 import { updateCenter } from '../../redux/actions/mapActions';
 
-// { location, handleItemClick, index }
 const SidebarItem = (props) => (
   <div
     className="card-panel hoverable teal lighten-2 side-item"
     onClick={() => {
       props.updateShowInfo(props.location, props.index);
       props.updateCenter(props.location.lat, props.location.lng);
-
     }}
   >
     <li> {props.location.name} </li>
   </div>
 );
-
-const mapStateToProps = (state) => ({
-  center: state.map,
-});
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -31,8 +25,9 @@ function mapDispatchToProps(dispatch) {
 
 SidebarItem.propTypes = {
   location: React.PropTypes.object,
-  handleItemClick: React.PropTypes.func,
+  updateShowInfo: React.PropTypes.func,
+  updateCenter: React.PropTypes.func,
   index: React.PropTypes.number,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarItem);
+export default connect(null, mapDispatchToProps)(SidebarItem);

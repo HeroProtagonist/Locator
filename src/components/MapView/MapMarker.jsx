@@ -14,7 +14,7 @@ class MapMarker extends React.Component {
   renderInfoWindow(location, index) {
     return (
       <InfoWindow
-        onCloseclick={ () => this.props.updateShowInfo(location, index) }
+        onCloseclick={() => this.props.updateShowInfo(location, index)}
       >
         <div className="info">
           <strong> {location.name} </strong>
@@ -48,10 +48,6 @@ class MapMarker extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  center: state.map,
-});
-
 function mapDispatchToProps(dispatch) {
   return {
     updateCenter: bindActionCreators(updateCenter, dispatch),
@@ -60,12 +56,12 @@ function mapDispatchToProps(dispatch) {
 }
 
 MapMarker.propTypes = {
-  reCenter: React.PropTypes.func,
-  mapHolderRef: React.PropTypes.object,
-  handlePinClick: React.PropTypes.func,
-  loc: React.PropTypes.object,
-  updateInfoWindow: React.PropTypes.func,
   index: React.PropTypes.number,
+  mapHolderRef: React.PropTypes.object,
+  loc: React.PropTypes.object,
+  updateCenter: React.PropTypes.func,
+  updateInfoWindow: React.PropTypes.func,
+  updateShowInfo: React.PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapMarker);
+export default connect(null, mapDispatchToProps)(MapMarker);
