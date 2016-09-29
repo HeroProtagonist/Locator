@@ -3,6 +3,11 @@ export const addPlace = place => ({
   place,
 });
 
+export const removePlace = index => ({
+  type: 'REMOVE_PLACE',
+  index,
+});
+
 export const updateShowInfo = (clicked, index) => ({
   type: 'UPDATE_SHOW_INFO',
   clicked,
